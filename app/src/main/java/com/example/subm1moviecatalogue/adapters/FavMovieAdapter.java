@@ -73,8 +73,8 @@ public class FavMovieAdapter extends RecyclerView.Adapter<FavMovieAdapter.ViewHo
         ViewHolder(View itemView) {
             super(itemView);
 
-            ivPoster = itemView.findViewById(R.id.iv_list_movie_poster);
-            tvTitle = itemView.findViewById(R.id.tv_list_movie_title);
+            ivPoster = itemView.findViewById(R.id.iv_list_fav_movie_poster);
+            tvTitle = itemView.findViewById(R.id.tv_list_fav_movie_title);
         }
     }
 }

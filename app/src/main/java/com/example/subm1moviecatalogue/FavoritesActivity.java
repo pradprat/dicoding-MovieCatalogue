@@ -23,8 +23,8 @@ public class FavoritesActivity extends AppCompatActivity {
 
         FavoritesTabAdapter adapter = new FavoritesTabAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(new MovieFavoriteFragment(), getResources().getString(R.string.title_movie));
-        adapter.addFragment(new SeriesFavoriteFragment(), getResources().getString(R.string.title_series));
+        adapter.addFragment(new MovieFavoriteFragment(), "Movie");
+        adapter.addFragment(new SeriesFavoriteFragment(), "Series");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

@@ -1,13 +1,16 @@
 package com.example.subm1moviecatalogue.databases;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
 
 import com.example.subm1moviecatalogue.models.Movie;
+import com.example.subm1moviecatalogue.models.Series;
 
-@Database(entities = {Movie.class}, version = 1)
+@Database(entities = {Movie.class , Series.class}, version = 2)
 public abstract class MyDatabase extends RoomDatabase {
     private static MyDatabase
             INSTANCE;
@@ -21,6 +24,16 @@ public abstract class MyDatabase extends RoomDatabase {
         return INSTANCE;
     }
     public static void destroyInstance() {
+
         INSTANCE = null;
     }
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(SupportSQLiteDatabase database) {
+            database.execSQL("ALTER TABLE users "
+                    +"ADD COLUMN address TEXT");
+
+        }
+    };
 }

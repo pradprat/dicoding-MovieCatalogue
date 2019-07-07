@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.subm1moviecatalogue.models.Movie;
+import com.example.subm1moviecatalogue.models.Series;
 
 import java.util.List;
 
@@ -41,5 +42,37 @@ public class MovieDatabase {
     public boolean isFavMovieExist(Movie movie){
         return db.movieDao().getFavMovieById(movie.getId()) != null;
     }
+
+
+    public void insertFavSeries(Series series) {
+        db.movieDao().insertFavSeries(series);
+        Log.d("__database", series.getName()+" ditambahkan");
+    }
+
+    public List<Series> getAllFavSeries() {
+        List<Series> seriess = db.movieDao().getAllFavSeries();
+        for (Series series : seriess){
+            Log.d("__database", "Sudah ada di database = "+series.getName());
+        }
+        return seriess;
+    }
+
+    public void deleteFavSeries(Series series){
+        db.movieDao().deleteFavSeries(series);
+        Log.d("__database", series.getName()+" dihapus");
+    }
+
+    public void deleteFavSeriesById(long seriesId){
+        Series series = db.movieDao().getFavSeriesById(seriesId);
+        db.movieDao().deleteFavSeriesById(seriesId);
+        Log.d("__database", series.getName()+" dihapus");
+    }
+
+    public boolean isFavSeriesExist(Series series){
+        return db.movieDao().getFavSeriesById(series.getId()) != null;
+    }
+
+
+
 
 }
