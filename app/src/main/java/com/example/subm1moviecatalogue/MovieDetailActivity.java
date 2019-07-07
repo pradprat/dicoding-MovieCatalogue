@@ -77,12 +77,12 @@ public class MovieDetailActivity extends AppCompatActivity {
                         if (!isChecked){ // exist in database
                             movieDatabase.deleteFavMovie(movie);
                             cbFavorite.setChecked(false);
-                            Toast.makeText(getApplicationContext(), movie.getTitle()+" dihapus dari Favorite Movie", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), movie.getTitle()+getResources().getString(R.string.text_delete_fav), Toast.LENGTH_SHORT).show();
 
                         }else{ // not exist
                             movieDatabase.insertFavMovies(movie);
                             cbFavorite.setChecked(true);
-                            Toast.makeText(getApplicationContext(), movie.getTitle()+" ditambahkan ke Favorite Movie", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), movie.getTitle()+getResources().getString(R.string.text_add_fav), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -121,12 +121,12 @@ public class MovieDetailActivity extends AppCompatActivity {
                         if (!isChecked){ // exist in database
                             movieDatabase.deleteFavSeries(series);
                             cbFavorite.setChecked(false);
-                            Toast.makeText(getApplicationContext(), series.getName()+" dihapus dari Favorite Series", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), series.getName()+getResources().getString(R.string.text_delete_fav), Toast.LENGTH_SHORT).show();
 
                         }else{ // not exist
                             movieDatabase.insertFavSeries(series);
                             cbFavorite.setChecked(true);
-                            Toast.makeText(getApplicationContext(), series.getName()+" ditambahkan ke Favorite Series", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), series.getName()+getResources().getString(R.string.text_add_fav), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
