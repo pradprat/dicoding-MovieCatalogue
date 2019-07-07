@@ -54,7 +54,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 }else{
                     tvRating.setTextColor(getResources().getColor(R.color.lowRating));
                 }
-                tvVotes.setText(movie.getVoteCount()+" votes");
+                tvVotes.setText(movie.getVoteCount()+getResources().getString(R.string.votes));
 
                 Picasso.get().load("https://image.tmdb.org/t/p/w185"+movie.getPosterPath())
                         .into(ivPoster);
@@ -76,12 +76,12 @@ public class MovieDetailActivity extends AppCompatActivity {
                         if (!isChecked){ // exist in database
                             movieDatabase.deleteFavMovie(movie);
                             cbFavorite.setChecked(false);
-                            Toast.makeText(getApplicationContext(), movie.getTitle()+" dihapus dari Favorite Movie", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), movie.getTitle()+getResources().getString(R.string.text_delete_fav), Toast.LENGTH_SHORT).show();
 
                         }else{ // not exist
                             movieDatabase.insertFavMovies(movie);
                             cbFavorite.setChecked(true);
-                            Toast.makeText(getApplicationContext(), movie.getTitle()+" ditambahkan ke Favorite Movie", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), movie.getTitle()+getResources().getString(R.string.text_add_fav), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
