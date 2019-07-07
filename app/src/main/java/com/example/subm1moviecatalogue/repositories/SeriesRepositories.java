@@ -38,9 +38,7 @@ public class SeriesRepositories {
                 }else{
                     Log.d("__respon", response.message());
                 }
-
             }
-
             @Override
             public void onFailure(Call<SeriesResult> call, Throwable t) {
                 Log.d("__error",t.getMessage());

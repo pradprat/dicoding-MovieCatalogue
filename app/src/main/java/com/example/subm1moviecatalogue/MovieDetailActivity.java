@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 public class MovieDetailActivity extends AppCompatActivity {
     MovieDatabase movieDatabase;
     Movie movie;
+    int ADD_FAVORITE=100;
+    int REMOVE_FAVORITE=200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,6 @@ public class MovieDetailActivity extends AppCompatActivity {
                 }else{
                     cbFavorite.setChecked(false);
                 }
-
                 
                 cbFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override

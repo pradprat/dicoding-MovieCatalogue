@@ -96,22 +96,13 @@ public class MovieFragment extends Fragment {
             mMovieAdapter = new MovieAdapter(getActivity(),movies);
             rvMovie.setLayoutManager(new GridLayoutManager(getActivity(),2));
             rvMovie.setAdapter(mMovieAdapter);
+
             ItemClickSupport.addTo(rvMovie).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                 @Override
                 public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                     Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
                     intent.putExtra("type","movie");
                     intent.putExtra("PARCEL",movies.get(position));
-
-
-                    MovieDatabase movieDatabase = new MovieDatabase(getActivity());
-
-//                    try {
-//                        movieDatabase.insertFavMovies(movies.get(position));
-//                    }catch (Exception e){
-//                        movieDatabase.deleteFavMovie(movies.get(position));
-//                    }
-//                    movieDatabase.getAllFavMovie();
 
                     startActivity(intent);
                 }
