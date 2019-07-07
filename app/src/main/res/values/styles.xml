@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="Theme.MovieCatalogTheme" parent="Theme.Design">
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="android:statusBarColor">@color/colorPrimaryNight</item>
+    </style>
+
+    <style name="Theme.MovieCatalogTheme.TransparentActionBar" parent="Theme.Design">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorPrimary">@color/colorActionBarTransparent</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
+
+</resources>

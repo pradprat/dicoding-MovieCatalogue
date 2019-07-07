@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_movie">film</string>
+    <string name="title_series">seri</string>
+
+    <string name="description">deskripsi</string>
+
+    <string name="change_language_settings">ubah pengaturan bahasa</string>
+    <string name="popularity">Popularitas</string>
+
+    <string name="favorites">Favorit</string>
+
+
+</resources>
