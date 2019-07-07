@@ -68,6 +68,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                     cbFavorite.setChecked(false);
                 }
 
+                
                 cbFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
