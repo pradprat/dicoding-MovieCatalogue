@@ -1,27 +1,42 @@
 package com.example.subm1moviecatalogue;
 
 import android.app.SearchManager;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
+import com.example.subm1moviecatalogue.adapters.MovieAdapter;
+import com.example.subm1moviecatalogue.models.Movie;
+import com.example.subm1moviecatalogue.models.MovieResult;
+import com.example.subm1moviecatalogue.viewmodels.MovieViewModel;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class MainHomeActivity extends AppCompatActivity{
     private Fragment fragment;
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private MovieViewModel mMovieViewModel;
+    private ArrayList<Movie> Movies=new ArrayList<>();
+    private MovieAdapter mMovieAdapter;
+
 
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -46,6 +61,7 @@ public class MainHomeActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
+
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -60,7 +76,9 @@ public class MainHomeActivity extends AppCompatActivity{
                  */
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    Toast.makeText(MainHomeActivity.this, query, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
+                    intent.putExtra("QUERY",query);
+                    startActivity(intent);
                     return true;
                 }
 
@@ -69,7 +87,7 @@ public class MainHomeActivity extends AppCompatActivity{
                  */
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    return false;
+                    return true;
                 }
             });
         }

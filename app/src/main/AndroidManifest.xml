@@ -12,10 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
         <activity
+            android:name=".SearchActivity"
+            android:theme="@style/Theme.MovieCatalogTheme"></activity>
+        <activity
             android:name=".FavoritesActivity"
-            android:theme="@style/Theme.MovieCatalogTheme">
-
-        </activity>
+            android:theme="@style/Theme.MovieCatalogTheme"></activity>
         <activity
             android:name=".MainHomeActivity"
             android:label="@string/title_activity_main_home"

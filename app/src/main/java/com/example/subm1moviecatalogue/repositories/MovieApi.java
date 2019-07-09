@@ -8,11 +8,15 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface MovieApi {
-    @GET("movie")
+    @GET("discover/movie")
     Call<MovieResult> getMovieList(@Query("api_key") String apiKey,
                                    @Query("language") String language);
 
-    @GET("tv")
+    @GET("discover/tv")
     Call<SeriesResult> getSeriesList(@Query("api_key") String apiKey,
                                      @Query("language") String language);
+    @GET("search/movie")
+    Call<MovieResult> getSearchMovieList(@Query("api_key") String apiKey,
+                                         @Query("language") String language,
+                                         @Query("query") String query);
 }

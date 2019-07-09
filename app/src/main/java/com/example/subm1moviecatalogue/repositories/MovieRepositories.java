@@ -44,4 +44,20 @@ public class MovieRepositories {
         });
         return movieData;
     }
+
+    public MutableLiveData<MovieResult> getSearchMovie(String apiKey, String language,String query){
+        movieApi.getSearchMovieList(apiKey, language,query).enqueue(new Callback<MovieResult>() {
+            @Override
+            public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
+                if (response.isSuccessful()){
+                    setMovieData(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<MovieResult> call, Throwable t) {
+
+            }
+        });
+        return movieData;
+    }
 }
