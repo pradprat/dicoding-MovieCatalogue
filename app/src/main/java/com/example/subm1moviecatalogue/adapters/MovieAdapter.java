@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-
     private Context context;
     private ArrayList<Movie> listMovie;
 
@@ -44,7 +43,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public MovieAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_movie, parent, false);
         return new ViewHolder(view);
     }
@@ -58,7 +57,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return listMovie.size();
+        return getListMovie().size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

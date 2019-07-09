@@ -1,5 +1,7 @@
 package com.example.subm1moviecatalogue;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -9,8 +11,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -44,6 +48,32 @@ public class MainHomeActivity extends AppCompatActivity{
     public boolean onCreatePanelMenu(int featureId, Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
 
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+
+        if (searchManager != null) {
+            SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setQueryHint(getResources().getString(R.string.search_hint));
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                /*
+                Gunakan method ini ketika search selesai atau OK
+                 */
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    Toast.makeText(MainHomeActivity.this, query, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+
+                /*
+                Gunakan method ini untuk merespon tiap perubahan huruf pada searchView
+                 */
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
+        }
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -71,15 +101,13 @@ public class MainHomeActivity extends AppCompatActivity{
 
         init();
 
-
-
     }
 
     private void init(){
         if(getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(getResources().getString(R.string.title_movie));
+            getSupportActionBar().setTitle(getResources().getString(R.string.title_series));
         }
-        fragment = new MovieFragment();
+        fragment = new SeriesFragment();
         setFragment();
     }
 

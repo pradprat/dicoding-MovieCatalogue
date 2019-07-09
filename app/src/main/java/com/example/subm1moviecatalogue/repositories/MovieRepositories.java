@@ -1,6 +1,7 @@
 package com.example.subm1moviecatalogue.repositories;
 
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.NonNull;
 
 import com.example.subm1moviecatalogue.models.MovieResult;
 
@@ -9,8 +10,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieRepositories {
-
-    MutableLiveData<MovieResult> movieData = new MutableLiveData<>();
+    private MutableLiveData<MovieResult> movieData = new MutableLiveData<>();
     private static MovieRepositories movieRepositories;
     public static MovieRepositories getInstance(){
         if (movieRepositories == null){
@@ -19,13 +19,13 @@ public class MovieRepositories {
         return movieRepositories;
     }
 
-    public void setMovieData(MovieResult movieData) {
+    private void setMovieData(MovieResult movieData) {
         this.movieData.setValue(movieData);
     }
 
     private MovieApi movieApi;
 
-    public MovieRepositories(){
+    private MovieRepositories(){
         movieApi = RetrofitService.createService(MovieApi.class);
     }
 
@@ -37,7 +37,6 @@ public class MovieRepositories {
                     setMovieData(response.body());
                 }
             }
-
             @Override
             public void onFailure(Call<MovieResult> call, Throwable t) {
 
@@ -45,5 +44,4 @@ public class MovieRepositories {
         });
         return movieData;
     }
-
 }

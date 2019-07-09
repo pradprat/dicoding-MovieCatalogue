@@ -10,7 +10,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SeriesRepositories {
-    MutableLiveData<SeriesResult> seriesData = new MutableLiveData<>();
+    private MutableLiveData<SeriesResult> seriesData = new MutableLiveData<>();
     private static SeriesRepositories seriesRepositories;
     public static SeriesRepositories getInstance(){
         if (seriesRepositories == null){
@@ -19,13 +19,13 @@ public class SeriesRepositories {
         return seriesRepositories;
     }
 
-    public void setSeriesData(SeriesResult seriesData) {
+    private void setSeriesData(SeriesResult seriesData) {
         this.seriesData.setValue(seriesData);
     }
 
     private MovieApi seriesApi;
 
-    public SeriesRepositories(){
+    private SeriesRepositories(){
         seriesApi = RetrofitService.createService(MovieApi.class);
     }
 
@@ -35,13 +35,11 @@ public class SeriesRepositories {
             public void onResponse(Call<SeriesResult> call, Response<SeriesResult> response) {
                 if (response.isSuccessful()){
                     setSeriesData(response.body());
-                }else{
-                    Log.d("__respon", response.message());
                 }
             }
             @Override
             public void onFailure(Call<SeriesResult> call, Throwable t) {
-                Log.d("__error",t.getMessage());
+
             }
         });
         return seriesData;

@@ -38,8 +38,8 @@
 
                 <ImageView
                     android:id="@+id/iv_list_series_poster"
-                    android:layout_width="160dp"
-                    android:layout_height="250dp"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
                     android:background="@color/colorPrimaryNight"
                     android:contentDescription="@string/movie_poster"
                     android:scaleType="centerCrop"
@@ -55,7 +55,7 @@
                 android:layout_marginEnd="16dp"
                 android:text="@string/title_series_layout"
                 android:textColor="@color/White"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

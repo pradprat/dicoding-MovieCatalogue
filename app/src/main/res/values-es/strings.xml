@@ -13,5 +13,6 @@
     <string name="text_delete_fav"> eliminado de la lista de favoritos</string>
     <string name="text_add_fav"> añadido a la lista de favoritos</string>
     <string name="votes"> votos</string>
+    <string name="search">search</string>
 
 </resources>

@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".MovieFragment">
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_fragment_movie"
         android:layout_width="wrap_content"
@@ -24,6 +23,4 @@
             android:visibility="invisible"/>
 
     </RelativeLayout>
-
-
 </FrameLayout>

@@ -40,7 +40,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         String type = getIntent().getStringExtra("type");
         switch (type){
-            case "movie":
+            case "Movie":
                 movie = getIntent().getParcelableExtra("PARCEL");
 //
                 tvDesc.setText(movie.getOverview());

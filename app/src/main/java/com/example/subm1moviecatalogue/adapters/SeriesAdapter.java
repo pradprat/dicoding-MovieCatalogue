@@ -44,7 +44,7 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
     @NonNull
     @Override
     public SeriesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_series, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_movie, parent, false);
         return new SeriesAdapter.ViewHolder(view);
     }
 
@@ -53,7 +53,6 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         Picasso.get().load("https://image.tmdb.org/t/p/w185"+getListSeries().get(position).getPosterPath())
                 .into(viewHolder.ivPoster);
         viewHolder.tvTitle.setText(getListSeries().get(position).getName());
-        viewHolder.tvSeason.setText(getListSeries().get(position).getOriginalLanguage());
     }
 
     @Override
@@ -64,13 +63,12 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivPoster;
         TextView tvTitle;
-        TextView tvSeason;
 
         ViewHolder(View itemView) {
             super(itemView);
-            ivPoster = itemView.findViewById(R.id.iv_list_series_poster);
-            tvTitle = itemView.findViewById(R.id.tv_list_series_title);
-            tvSeason = itemView.findViewById(R.id.tv_list_series_season);
+
+            ivPoster = itemView.findViewById(R.id.iv_list_movie_poster);
+            tvTitle = itemView.findViewById(R.id.tv_list_movie_title);
         }
     }
 }

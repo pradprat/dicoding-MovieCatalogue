@@ -3,14 +3,15 @@
 
 
     <item
+        android:id="@+id/navigation_series"
+        android:icon="@drawable/ic_baseline_tv_24px"
+        android:title="@string/title_series" />
+
+    <item
         android:id="@+id/navigation_movie"
         android:icon="@drawable/ic_baseline_movie_24px"
         android:title="@string/title_movie" />
 
-    <item
-        android:id="@+id/navigation_series"
-        android:icon="@drawable/ic_baseline_tv_24px"
-        android:title="@string/title_series" />
 
 
 </menu>

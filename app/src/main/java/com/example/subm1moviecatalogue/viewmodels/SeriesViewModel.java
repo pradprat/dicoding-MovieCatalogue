@@ -12,7 +12,6 @@ public class SeriesViewModel extends ViewModel {
 
     private static final String API_KEY= BuildConfig.API_KEY;
     private MutableLiveData<SeriesResult> mSeries;
-    private SeriesRepositories mSeriesRepo;
     private MutableLiveData<Boolean> isFetching = new MutableLiveData<>();
 
 
@@ -21,7 +20,7 @@ public class SeriesViewModel extends ViewModel {
         if (mSeries!=null){
             return;
         }
-        mSeriesRepo = SeriesRepositories.getInstance();
+        SeriesRepositories mSeriesRepo = SeriesRepositories.getInstance();
         mSeries = mSeriesRepo.getSeries(API_KEY,"en-US");
 
     }
@@ -40,7 +39,7 @@ public class SeriesViewModel extends ViewModel {
         return isFetching;
     }
 
-    public void setIsFetching(boolean isFetching){
+    private void setIsFetching(boolean isFetching){
         this.isFetching.postValue(isFetching);
     }
 }
