@@ -52,8 +52,6 @@ public class MovieFragment extends Fragment {
 
             mMovieViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(MovieViewModel.class);
 
-//        initializing data + show progress bar
-            mMovieViewModel.init();
 
             mMovieViewModel.getMovies().observe(this, new Observer<MovieResult>() {
                 @Override

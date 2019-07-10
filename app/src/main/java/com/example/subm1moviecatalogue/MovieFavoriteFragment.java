@@ -128,7 +128,7 @@ public class MovieFavoriteFragment extends Fragment {
                 @Override
                 public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                     Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
-                    intent.putExtra("type","movie");
+                    intent.putExtra("type","Movie");
                     intent.putExtra("PARCEL",movies.get(position));
                     movieSelected=movies.get(position);
 

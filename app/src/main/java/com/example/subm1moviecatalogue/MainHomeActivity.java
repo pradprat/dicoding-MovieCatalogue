@@ -31,8 +31,7 @@ import java.util.Objects;
 
 public class MainHomeActivity extends AppCompatActivity{
     private Fragment fragment;
-    private FragmentManager fm;
-    private FragmentTransaction ft;
+    private String MenuSelect;
     private MovieViewModel mMovieViewModel;
     private ArrayList<Movie> Movies=new ArrayList<>();
     private MovieAdapter mMovieAdapter;
@@ -48,10 +47,12 @@ public class MainHomeActivity extends AppCompatActivity{
                 case R.id.navigation_movie:
                     fragment = new MovieFragment();
                     Objects.requireNonNull(getSupportActionBar()).setTitle(getResources().getString(R.string.title_movie));
+                    MenuSelect = "Movie";
                     break;
                 case R.id.navigation_series:
                     fragment = new SeriesFragment();
                     Objects.requireNonNull(getSupportActionBar()).setTitle(getResources().getString(R.string.title_series));
+                    MenuSelect = "Series";
                     break;
             }
             setFragment();
@@ -78,6 +79,7 @@ public class MainHomeActivity extends AppCompatActivity{
                 public boolean onQueryTextSubmit(String query) {
                     Intent intent = new Intent(getApplicationContext(),SearchActivity.class);
                     intent.putExtra("QUERY",query);
+                    intent.putExtra("KIND",MenuSelect);
                     startActivity(intent);
                     return true;
                 }
@@ -125,13 +127,14 @@ public class MainHomeActivity extends AppCompatActivity{
         if(getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getResources().getString(R.string.title_series));
         }
+        MenuSelect = "Series";
         fragment = new SeriesFragment();
         setFragment();
     }
 
     private void setFragment(){
-        fm = getSupportFragmentManager();
-        ft = fm.beginTransaction();
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fl_main_home, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();

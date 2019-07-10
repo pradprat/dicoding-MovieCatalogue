@@ -11,12 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents">
+        <receiver android:name=".FavoriteMovieWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/favorite_movie_info" />
+        </receiver>
+
         <activity
             android:name=".SearchActivity"
-            android:theme="@style/Theme.MovieCatalogTheme"></activity>
+            android:theme="@style/Theme.MovieCatalogTheme" />
         <activity
             android:name=".FavoritesActivity"
-            android:theme="@style/Theme.MovieCatalogTheme"></activity>
+            android:theme="@style/Theme.MovieCatalogTheme" />
         <activity
             android:name=".MainHomeActivity"
             android:label="@string/title_activity_main_home"

@@ -19,4 +19,8 @@ public interface MovieApi {
     Call<MovieResult> getSearchMovieList(@Query("api_key") String apiKey,
                                          @Query("language") String language,
                                          @Query("query") String query);
+    @GET("search/tv")
+    Call<SeriesResult> getSearchSeriesList(@Query("api_key") String apiKey,
+                                         @Query("language") String language,
+                                         @Query("query") String query);
 }

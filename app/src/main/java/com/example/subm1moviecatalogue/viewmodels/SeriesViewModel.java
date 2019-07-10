@@ -15,17 +15,23 @@ public class SeriesViewModel extends ViewModel {
     private MutableLiveData<Boolean> isFetching = new MutableLiveData<>();
 
 
-    public void init(){
+    public LiveData<SeriesResult> getSeriess(){
         setIsFetching(true);
         if (mSeries!=null){
-            return;
+            return mSeries;
         }
         SeriesRepositories mSeriesRepo = SeriesRepositories.getInstance();
         mSeries = mSeriesRepo.getSeries(API_KEY,"en-US");
-
+        return mSeries;
     }
 
-    public LiveData<SeriesResult> getSeriess(){
+    public LiveData<SeriesResult> getSearchSeriess(String query){
+        setIsFetching(true);
+        if (mSeries!=null){
+            return mSeries;
+        }
+        SeriesRepositories mSeriesRepo = SeriesRepositories.getInstance();
+        mSeries = mSeriesRepo.getSearchSeries(API_KEY,"en-US",query);
         return mSeries;
     }
 

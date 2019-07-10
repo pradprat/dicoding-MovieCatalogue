@@ -11,6 +11,7 @@ import retrofit2.Response;
 
 public class MovieRepositories {
     private MutableLiveData<MovieResult> movieData = new MutableLiveData<>();
+    private MutableLiveData<MovieResult> movieSearchData = new MutableLiveData<>();
     private static MovieRepositories movieRepositories;
     public static MovieRepositories getInstance(){
         if (movieRepositories == null){
@@ -21,6 +22,9 @@ public class MovieRepositories {
 
     private void setMovieData(MovieResult movieData) {
         this.movieData.setValue(movieData);
+    }
+    private void setMovieSearchData(MovieResult movieData) {
+        this.movieSearchData.setValue(movieData);
     }
 
     private MovieApi movieApi;
@@ -58,6 +62,6 @@ public class MovieRepositories {
 
             }
         });
-        return movieData;
+        return movieSearchData;
     }
 }

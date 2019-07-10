@@ -23,8 +23,6 @@
     <string name="popularity">Popularity</string>
 
 
-    <string name="title_series_layout" translatable="false">Title</string>
-    <string name="season_series_layout" translatable="false">Season</string>
     <string name="favorites">Favorites</string>
 
     <string name="text_delete_fav"> deleted from the Favorites list</string>
@@ -32,4 +30,6 @@
     <string name="votes"> votes</string>
     <string name="search">search</string>
     <string name="search_hint" translatable="false">Ex : spiderman</string>
+    <string name="appwidget_text">Favorite Movie</string>
+    <string name="add_widget">Add widget</string>
 </resources>

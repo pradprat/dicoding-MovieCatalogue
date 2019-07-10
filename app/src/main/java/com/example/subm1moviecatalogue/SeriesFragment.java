@@ -51,8 +51,6 @@ public class SeriesFragment extends Fragment {
 
         mSeriesViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(SeriesViewModel.class);
 
-//        initializing data + show progress bar
-        mSeriesViewModel.init();
 
         mSeriesViewModel.getSeriess().observe(this, new Observer<SeriesResult>() {
             @Override
@@ -96,7 +94,7 @@ public class SeriesFragment extends Fragment {
                 @Override
                 public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                     Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
-                    intent.putExtra("type","series");
+                    intent.putExtra("type","Series");
                     intent.putExtra("PARCEL",seriess.get(position));
                     startActivity(intent);
                 }

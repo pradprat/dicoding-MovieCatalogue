@@ -16,16 +16,26 @@ public class MovieViewModel extends ViewModel {
 
 
     public void init(){
-        setIsFetching(true);
-        if (mMovie!=null){
-            return;
-        }
-        MovieRepositories mMovieRepo = MovieRepositories.getInstance();
-        mMovie = mMovieRepo.getMovie(API_KEY,"en-US");
 
     }
 
     public LiveData<MovieResult> getMovies(){
+        setIsFetching(true);
+        if (mMovie!=null){
+            return mMovie;
+        }
+        MovieRepositories mMovieRepo = MovieRepositories.getInstance();
+        mMovie = mMovieRepo.getMovie(API_KEY,"en-US");
+        return mMovie;
+    }
+
+    public LiveData<MovieResult> getSearchMovies(String query){
+        setIsFetching(true);
+        if (mMovie!=null){
+            return mMovie;
+        }
+        MovieRepositories mMovieRepo = MovieRepositories.getInstance();
+        mMovie = mMovieRepo.getSearchMovie(API_KEY,"en-US",query);
         return mMovie;
     }
 

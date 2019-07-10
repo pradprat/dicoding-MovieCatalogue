@@ -15,4 +15,7 @@
     <string name="votes"> vote</string>
     <string name="search">cari</string>
 
+    <string name="appwidget_text">Film Favorit</string>
+    <string name="add_widget">Tambahkan widget</string>
+
 </resources>

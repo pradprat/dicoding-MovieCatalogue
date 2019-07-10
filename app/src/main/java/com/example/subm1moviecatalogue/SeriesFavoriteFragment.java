@@ -127,7 +127,7 @@ public class SeriesFavoriteFragment extends Fragment {
                 @Override
                 public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                     Intent intent = new Intent(getActivity(),MovieDetailActivity.class);
-                    intent.putExtra("type","series");
+                    intent.putExtra("type","Series");
                     intent.putExtra("PARCEL",Seriess.get(position));
                     SeriesSelected=Seriess.get(position);
 

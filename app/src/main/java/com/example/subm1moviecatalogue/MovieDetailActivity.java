@@ -88,7 +88,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 });
 
                 break;
-            case "series":
+            case "Series":
                 series = getIntent().getParcelableExtra("PARCEL");
 //
                 tvDesc.setText(series.getOverview());

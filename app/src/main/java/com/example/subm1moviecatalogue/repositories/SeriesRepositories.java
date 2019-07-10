@@ -11,6 +11,7 @@ import retrofit2.Response;
 
 public class SeriesRepositories {
     private MutableLiveData<SeriesResult> seriesData = new MutableLiveData<>();
+    private MutableLiveData<SeriesResult> seriesSearchData = new MutableLiveData<>();
     private static SeriesRepositories seriesRepositories;
     public static SeriesRepositories getInstance(){
         if (seriesRepositories == null){
@@ -21,6 +22,9 @@ public class SeriesRepositories {
 
     private void setSeriesData(SeriesResult seriesData) {
         this.seriesData.setValue(seriesData);
+    }
+    private void setSeriesSearchData(SeriesResult seriesData) {
+        this.seriesSearchData.setValue(seriesData);
     }
 
     private MovieApi seriesApi;
@@ -43,5 +47,20 @@ public class SeriesRepositories {
             }
         });
         return seriesData;
+    }
+    public MutableLiveData<SeriesResult> getSearchSeries(String apiKey, String language,String query){
+        seriesApi.getSearchSeriesList(apiKey, language,query).enqueue(new Callback<SeriesResult>() {
+            @Override
+            public void onResponse(Call<SeriesResult> call, Response<SeriesResult> response) {
+                if (response.isSuccessful()){
+                    setSeriesSearchData(response.body());
+                }
+            }
+            @Override
+            public void onFailure(Call<SeriesResult> call, Throwable t) {
+
+            }
+        });
+        return seriesSearchData;
     }
 }
