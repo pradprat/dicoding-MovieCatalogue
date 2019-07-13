@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1080294479228",
+    "firebase_url": "https://dicoding-moviecatalogue-6cdc7.firebaseio.com",
+    "project_id": "dicoding-moviecatalogue-6cdc7",
+    "storage_bucket": "dicoding-moviecatalogue-6cdc7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080294479228:android:ecc1af2795e7321e",
+        "android_client_info": {
+          "package_name": "com.example.subm1moviecatalogue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080294479228-nv00u1o3d8cq2vpsosbaa8l8rt7cectq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.subm1moviecatalogue",
+            "certificate_hash": "da0d38f8aa82f0e44d6272d23109e481f626aff9"
+          }
+        },
+        {
+          "client_id": "1080294479228-b3jc10ca01p4f7hhc912dg9fqfquo70o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaXjEt3vNJ3iXuoXUSxlZ7bou1ajCwhfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080294479228-b3jc10ca01p4f7hhc912dg9fqfquo70o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
