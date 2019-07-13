@@ -2,12 +2,14 @@ package com.example.subm1moviecatalogue;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.subm1moviecatalogue.adapters.ItemClickSupport;
@@ -29,15 +31,26 @@ public class SearchActivity extends AppCompatActivity {
     ArrayList<Series> seriess = new ArrayList<>();
     ArrayList<Movie> movies = new ArrayList<>();
     SearchAdapter mSearchAdapter;
+    String query,kind;
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mSearchAdapter.clearList(kind);
+    }
+
+    @Override
+    public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+        return super.onCreateView(parent, name, context, attrs);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_search);
 
-        String query = getIntent().getStringExtra("QUERY");
-        String kind = getIntent().getStringExtra("KIND");
+        query = getIntent().getStringExtra("QUERY");
+        kind = getIntent().getStringExtra("KIND");
 
         rvSearch = findViewById(R.id.rv_search_activity);
 
@@ -48,6 +61,7 @@ public class SearchActivity extends AppCompatActivity {
 //            if user select Series tab======================================================================
             searchSeries(query);
         }
+        super.onCreate(savedInstanceState);
     }
 
     private void searchMovie(String query){
@@ -58,9 +72,10 @@ public class SearchActivity extends AppCompatActivity {
             public void onChanged(@Nullable MovieResult MovieResult) {
                 assert MovieResult != null;
                 ArrayList<Movie> resMovie = MovieResult.getResults();
+                movies.clear();
                 movies.addAll(resMovie);
                 mSearchAdapter.notifyDataSetChanged();
-                mMovieViewModel.closing();
+                mMovieViewModel.closingSearch();
             }
         });
 
@@ -91,9 +106,10 @@ public class SearchActivity extends AppCompatActivity {
             public void onChanged(@Nullable SeriesResult SeriesResult) {
                 assert SeriesResult != null;
                 ArrayList<Series> resSeries = SeriesResult.getResults();
+                seriess.clear();
                 seriess.addAll(resSeries);
                 mSearchAdapter.notifyDataSetChanged();
-                mSeriesViewModel.closing();
+                mSeriesViewModel.closingSearch();
             }
         });
 

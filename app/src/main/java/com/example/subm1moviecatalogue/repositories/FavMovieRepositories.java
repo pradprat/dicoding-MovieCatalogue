@@ -16,6 +16,7 @@ import retrofit2.Response;
 
 public class FavMovieRepositories {
     Context context;
+    private ArrayList<Movie> favMovieDataArray = new ArrayList<>(); // widget purposes
     private MutableLiveData<ArrayList<Movie>> favMovieData = new MutableLiveData<>();
     private static FavMovieRepositories favMovieRepositories;
     public static FavMovieRepositories getInstance(){
@@ -53,5 +54,12 @@ public class FavMovieRepositories {
         setFavMovieData(movies);
 
         return favMovieData;
+    }
+
+    public ArrayList<Movie> getFavMovieArray(){ //widget purposes
+        MovieDatabase movieDatabase = new MovieDatabase(context);
+        favMovieDataArray.addAll(movieDatabase.getAllFavMovie());
+
+        return favMovieDataArray;
     }
 }

@@ -12,6 +12,7 @@ public class MovieViewModel extends ViewModel {
 
     private static final String API_KEY= BuildConfig.API_KEY;
     private MutableLiveData<MovieResult> mMovie;
+    private MutableLiveData<MovieResult> mMovieSearch;
     private MutableLiveData<Boolean> isFetching = new MutableLiveData<>();
 
 
@@ -32,15 +33,21 @@ public class MovieViewModel extends ViewModel {
     public LiveData<MovieResult> getSearchMovies(String query){
         setIsFetching(true);
         if (mMovie!=null){
-            return mMovie;
+            return mMovieSearch;
         }
         MovieRepositories mMovieRepo = MovieRepositories.getInstance();
-        mMovie = mMovieRepo.getSearchMovie(API_KEY,"en-US",query);
-        return mMovie;
+        mMovieSearch = mMovieRepo.getSearchMovie(API_KEY,"en-US",query);
+        return mMovieSearch;
     }
 
     public void closing(){
         if (mMovie.getValue()!=null){
+            setIsFetching(false);
+        }
+    }
+
+    public void closingSearch(){
+        if (mMovieSearch.getValue()!=null){
             setIsFetching(false);
         }
     }

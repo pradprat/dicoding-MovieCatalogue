@@ -12,6 +12,7 @@ public class SeriesViewModel extends ViewModel {
 
     private static final String API_KEY= BuildConfig.API_KEY;
     private MutableLiveData<SeriesResult> mSeries;
+    private MutableLiveData<SeriesResult> mSeriesSearch;
     private MutableLiveData<Boolean> isFetching = new MutableLiveData<>();
 
 
@@ -28,15 +29,20 @@ public class SeriesViewModel extends ViewModel {
     public LiveData<SeriesResult> getSearchSeriess(String query){
         setIsFetching(true);
         if (mSeries!=null){
-            return mSeries;
+            return mSeriesSearch;
         }
         SeriesRepositories mSeriesRepo = SeriesRepositories.getInstance();
-        mSeries = mSeriesRepo.getSearchSeries(API_KEY,"en-US",query);
-        return mSeries;
+        mSeriesSearch = mSeriesRepo.getSearchSeries(API_KEY,"en-US",query);
+        return mSeriesSearch;
     }
 
     public void closing(){
         if (mSeries.getValue()!=null){
+            setIsFetching(false);
+        }
+    }
+    public void closingSearch(){
+        if (mSeriesSearch.getValue()!=null){
             setIsFetching(false);
         }
     }

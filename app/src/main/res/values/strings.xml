@@ -32,4 +32,13 @@
     <string name="search_hint" translatable="false">Ex : spiderman</string>
     <string name="appwidget_text">Favorite Movie</string>
     <string name="add_widget">Add widget</string>
+    <string name="empty_text">empty</string>
+
+    <!--Fire base messaging-->
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="subscribe_to_news">Subscribe to news</string>
+    <string name="log_token">Log token</string>
+    <string name="default_notification_channel_name">News</string>
+    <string name="msg_subscribed">Subscribed to news topic</string>
+    <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
 </resources>

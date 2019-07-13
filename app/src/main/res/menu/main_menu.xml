@@ -14,6 +14,16 @@
             app:showAsAction="never"/>
 
         <item
+            android:id="@+id/action_subscribe"
+            android:title="@string/subscribe_to_news"
+            app:showAsAction="never"/>
+
+        <item
+            android:id="@+id/action_new_token"
+            android:title="@string/log_token"
+            app:showAsAction="never"/>
+
+        <item
             android:id="@+id/navigation_favorites"
             android:icon = "@drawable/ic_fav_list"
             android:title="@string/favorites"

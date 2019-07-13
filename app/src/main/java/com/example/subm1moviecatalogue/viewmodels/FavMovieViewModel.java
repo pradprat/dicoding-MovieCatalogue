@@ -14,8 +14,9 @@ import com.example.subm1moviecatalogue.repositories.MovieRepositories;
 import java.util.ArrayList;
 
 public class FavMovieViewModel extends ViewModel {
-    Context context;
+    private Context context;
     private static final String API_KEY= BuildConfig.API_KEY;
+    private ArrayList<Movie> mMovieArray = new ArrayList<>();
     private MutableLiveData<ArrayList<Movie>> mMovie;
     private MutableLiveData<Boolean> isFetching = new MutableLiveData<>();
 
@@ -40,6 +41,14 @@ public class FavMovieViewModel extends ViewModel {
 
     public LiveData<ArrayList<Movie>> getMovies(){
         return mMovie;
+    }
+
+    public ArrayList<Movie> getMovieArray(Context context){
+        this.context=context;
+        FavMovieRepositories mFavMovieRepo = FavMovieRepositories.getInstance();
+        mFavMovieRepo.setContext(this.context);
+        mMovieArray.addAll(mFavMovieRepo.getFavMovieArray());
+        return mMovieArray;
     }
 
     public void closing(){

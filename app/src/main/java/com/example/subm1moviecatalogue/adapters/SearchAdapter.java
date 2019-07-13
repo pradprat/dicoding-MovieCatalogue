@@ -67,7 +67,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
                     .into(viewHolder.ivPoster);
             viewHolder.tvTitle.setText(getListMovie().get(position).getTitle());
         }
-
     }
 
     @Override
@@ -77,6 +76,18 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         }else{
             return getListSeries().size();
         }
+    }
+
+    public void clearList(String type){
+        int range;
+        if (type.equals("Movie")){
+            range = listMovies.size();
+            listMovies.clear();
+        }else{
+            range = listSeries.size();
+            listSeries.clear();
+        }
+        notifyItemRangeRemoved(0,range);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

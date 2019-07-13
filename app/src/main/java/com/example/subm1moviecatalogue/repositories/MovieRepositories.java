@@ -54,7 +54,7 @@ public class MovieRepositories {
             @Override
             public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
                 if (response.isSuccessful()){
-                    setMovieData(response.body());
+                    setMovieSearchData(response.body());
                 }
             }
             @Override

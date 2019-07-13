@@ -100,10 +100,12 @@ public class MainHomeActivity extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent mIntent = null;
-        if (item.getItemId() == R.id.action_change_settings){
-            mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-        }else if (item.getItemId() == R.id.navigation_favorites){
-            mIntent = new Intent(getApplicationContext(),FavoritesActivity.class);
+
+        switch (item.getItemId()){
+            case R.id.action_change_settings:
+                mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+            case R.id.navigation_favorites:
+                mIntent = new Intent(getApplicationContext(),FavoritesActivity.class);
         }
         if (mIntent!=null){
             startActivity(mIntent);
