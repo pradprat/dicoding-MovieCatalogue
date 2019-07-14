@@ -1,16 +1,16 @@
     package com.example.subm1moviecatalogue;
 
 
-    import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+    import androidx.lifecycle.Observer;
+    import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-    import android.support.v7.widget.LinearLayoutManager;
-    import android.support.v7.widget.RecyclerView;
+
+    import androidx.annotation.NonNull;
+    import androidx.annotation.Nullable;
+    import androidx.fragment.app.Fragment;
+    import androidx.recyclerview.widget.GridLayoutManager;
+    import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +18,7 @@ import android.widget.ProgressBar;
 
 import com.example.subm1moviecatalogue.adapters.ItemClickSupport;
 import com.example.subm1moviecatalogue.adapters.MovieAdapter;
-import com.example.subm1moviecatalogue.databases.MovieDatabase;
-import com.example.subm1moviecatalogue.models.Movie;
+    import com.example.subm1moviecatalogue.models.Movie;
 import com.example.subm1moviecatalogue.models.MovieResult;
 import com.example.subm1moviecatalogue.viewmodels.MovieViewModel;
 

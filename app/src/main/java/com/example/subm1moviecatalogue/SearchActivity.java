@@ -1,19 +1,20 @@
 package com.example.subm1moviecatalogue;
 
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.example.subm1moviecatalogue.adapters.ItemClickSupport;
-import com.example.subm1moviecatalogue.adapters.MovieAdapter;
 import com.example.subm1moviecatalogue.adapters.SearchAdapter;
 import com.example.subm1moviecatalogue.models.Movie;
 import com.example.subm1moviecatalogue.models.MovieResult;

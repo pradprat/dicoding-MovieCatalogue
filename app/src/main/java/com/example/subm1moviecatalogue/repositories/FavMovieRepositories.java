@@ -1,18 +1,12 @@
 package com.example.subm1moviecatalogue.repositories;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 import android.content.Context;
 
-import com.example.subm1moviecatalogue.FavoritesActivity;
 import com.example.subm1moviecatalogue.databases.MovieDatabase;
 import com.example.subm1moviecatalogue.models.Movie;
-import com.example.subm1moviecatalogue.models.MovieResult;
 
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FavMovieRepositories {
     Context context;

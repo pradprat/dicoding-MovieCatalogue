@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
 
         <receiver android:name=".widget.FavoriteWidget">
             <intent-filter>
@@ -44,9 +47,7 @@
         <activity
             android:name=".MovieDetailActivity"
             android:parentActivityName=".MainHomeActivity"
-            android:theme="@style/Theme.MovieCatalogTheme.TransparentActionBar" />
-
-        <!-- =================================widget================================================ -->
+            android:theme="@style/Theme.MovieCatalogTheme.TransparentActionBar" /> <!-- =================================widget================================================ -->
         <receiver android:name=".widget.FavoriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -59,9 +60,7 @@
 
         <service
             android:name=".widget.StackWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
-
-        <!--Firebase Messaging =======================================================-->
+            android:permission="android.permission.BIND_REMOTEVIEWS" /> <!-- Firebase Messaging ======================================================= -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
@@ -70,9 +69,7 @@
             android:resource="@color/colorPrimaryNight" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/default_notification_channel_id"/>
-
-
+            android:value="@string/default_notification_channel_id" />
     </application>
 
 </manifest>

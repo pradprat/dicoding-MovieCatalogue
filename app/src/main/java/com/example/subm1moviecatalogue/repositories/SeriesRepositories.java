@@ -1,7 +1,6 @@
 package com.example.subm1moviecatalogue.repositories;
 
-import android.arch.lifecycle.MutableLiveData;
-import android.util.Log;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.subm1moviecatalogue.models.SeriesResult;
 
