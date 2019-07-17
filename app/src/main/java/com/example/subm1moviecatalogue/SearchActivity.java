@@ -1,5 +1,6 @@
 package com.example.subm1moviecatalogue;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
@@ -49,6 +50,11 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         setContentView(R.layout.activity_search);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         query = getIntent().getStringExtra("QUERY");
         kind = getIntent().getStringExtra("KIND");

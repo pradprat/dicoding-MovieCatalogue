@@ -1,15 +1,22 @@
 package com.example.subm1moviecatalogue.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.annotation.NonNull;
 
+import com.example.subm1moviecatalogue.models.Movie;
 import com.example.subm1moviecatalogue.models.MovieResult;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieRepositories {
+    private ArrayList<Movie> movieDataArray = new ArrayList<>();
     private MutableLiveData<MovieResult> movieData = new MutableLiveData<>();
     private MutableLiveData<MovieResult> movieSearchData = new MutableLiveData<>();
     private static MovieRepositories movieRepositories;
@@ -18,6 +25,10 @@ public class MovieRepositories {
             movieRepositories = new MovieRepositories();
         }
         return movieRepositories;
+    }
+
+    public void setMovieRelease(ArrayList<Movie> movieRelease) {
+        this.movieDataArray = movieRelease;
     }
 
     private void setMovieData(MovieResult movieData) {
@@ -63,5 +74,16 @@ public class MovieRepositories {
             }
         });
         return movieSearchData;
+    }
+
+    public ArrayList<Movie> getMovieDataArray(String apiKey, String language) {
+
+        Response<MovieResult> movieResultResponse = null;
+        try {
+            movieResultResponse = movieApi.getMovieList(apiKey, language).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return movieResultResponse.body().getResults();
     }
 }

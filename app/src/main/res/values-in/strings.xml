@@ -20,9 +20,6 @@
 
     <string name="empty_text">kosong</string>
 
-    <string name="subscribe_to_news">langganan ke berita terbaru</string>
-    <string name="log_token">Log token</string>
-    <string name="default_notification_channel_name">Berita</string>
-    <string name="msg_subscribed">telah berlangganan ke topik berita</string>
+    <string name="settings">pengaturan</string>
 
 </resources>

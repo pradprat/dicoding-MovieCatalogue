@@ -1,11 +1,13 @@
 package com.example.subm1moviecatalogue;
 
+import android.annotation.SuppressLint;
 import android.app.SearchManager;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 
@@ -19,8 +21,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.subm1moviecatalogue.adapters.MovieAdapter;
 import com.example.subm1moviecatalogue.models.Movie;
@@ -29,12 +34,19 @@ import com.example.subm1moviecatalogue.viewmodels.MovieViewModel;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static java.lang.Thread.sleep;
+
 public class MainHomeActivity extends AppCompatActivity{
     private Fragment fragment;
     private String MenuSelect;
     private MovieViewModel mMovieViewModel;
+    ArrayList<Movie> movies2 = new ArrayList<>();
+
     private ArrayList<Movie> Movies=new ArrayList<>();
     private MovieAdapter mMovieAdapter;
+    MovieViewModel movieViewModel = new MovieViewModel();
+
+    private Context context = this;
 
 
 
@@ -97,6 +109,7 @@ public class MainHomeActivity extends AppCompatActivity{
         return super.onCreateOptionsMenu(menu);
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent mIntent = null;
@@ -104,13 +117,25 @@ public class MainHomeActivity extends AppCompatActivity{
         switch (item.getItemId()){
             case R.id.action_change_settings:
                 mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+                startActivity(mIntent);
+                return super.onOptionsItemSelected(item);
+
             case R.id.navigation_favorites:
                 mIntent = new Intent(getApplicationContext(),FavoritesActivity.class);
-        }
-        if (mIntent!=null){
-            startActivity(mIntent);
+                startActivity(mIntent);
+                return super.onOptionsItemSelected(item);
+
+            case R.id.action_settings:
+                mIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                startActivity(mIntent);
+
+
+                return super.onOptionsItemSelected(item);
+
+
         }
         return super.onOptionsItemSelected(item);
+
     }
 
     @Override

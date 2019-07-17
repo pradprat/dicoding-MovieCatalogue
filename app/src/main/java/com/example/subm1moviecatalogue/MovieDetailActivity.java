@@ -102,6 +102,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 }else{
                     tvRating.setTextColor(getResources().getColor(R.color.lowRating));
                 }
+                tvVotes.setText(series.getVoteCount() + " votes");
                 Picasso.get().load("https://image.tmdb.org/t/p/w185"+series.getPosterPath())
                         .into(ivPoster);
                 Picasso.get().load("https://image.tmdb.org/t/p/w500"+series.getBackdropPath())

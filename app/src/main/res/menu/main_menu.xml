@@ -14,13 +14,8 @@
             app:showAsAction="never"/>
 
         <item
-            android:id="@+id/action_subscribe"
-            android:title="@string/subscribe_to_news"
-            app:showAsAction="never"/>
-
-        <item
-            android:id="@+id/action_new_token"
-            android:title="@string/log_token"
+            android:id="@+id/action_settings"
+            android:title="@string/settings"
             app:showAsAction="never"/>
 
         <item
