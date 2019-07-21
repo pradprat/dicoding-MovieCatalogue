@@ -15,7 +15,8 @@ public abstract class MyDatabase extends RoomDatabase {
     private static MyDatabase
             INSTANCE;
     public abstract MovieDao movieDao();
-    public static MyDatabase getMyDatabase(Context context) {
+
+    static MyDatabase getMyDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE = Room.databaseBuilder(context.getApplicationContext(), MyDatabase.class, "movie-database")
                             .allowMainThreadQueries()

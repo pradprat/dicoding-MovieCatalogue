@@ -72,6 +72,13 @@
             android:enabled="true"
             android:exported="true"
             android:permission="true" />
+
+        <provider
+            android:name=".databases.MovieContentProvider"
+            android:authorities="com.example.subm1moviecatalogue.provider"
+            android:exported="true"
+            android:permission="com.example.subm1moviecatalogue.provider.READ_WRITE" />
+
     </application>
 
 </manifest>

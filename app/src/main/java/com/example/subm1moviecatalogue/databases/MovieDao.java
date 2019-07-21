@@ -1,5 +1,7 @@
 package com.example.subm1moviecatalogue.databases;
 
+import android.database.Cursor;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -13,13 +15,14 @@ import java.util.List;
 @Dao
 public interface MovieDao {
 
-    @Query("SELECT * FROM movie")
+    //    Favotite Movie SQLlite ==============================================
+    @Query("SELECT * FROM " + Movie.TABLE_NAME)
     List<Movie> getAllFavMovie();
 
-    @Query("SELECT * FROM movie where id LIKE :movieId")
+    @Query("SELECT * FROM " + Movie.TABLE_NAME + " where id LIKE :movieId")
     Movie getFavMovieById(long movieId);
 
-    @Query("SELECT COUNT(*) from movie")
+    @Query("SELECT COUNT(*) from " + Movie.TABLE_NAME)
     int countFavMovie();
 
     @Insert
@@ -28,8 +31,31 @@ public interface MovieDao {
     @Delete
     void deleteFavMovie(Movie movie);
 
-    @Query("DELETE FROM movie WHERE id LIKE :movieId")
+    @Query("DELETE FROM " + Movie.TABLE_NAME + " WHERE id LIKE :movieId")
     void deleteFavMovieById(long movieId);
+//    Favotite Movie SQLlite END==============================================
+
+
+    //    Favotite Movie Content Provider ==============================================
+    @Query("SELECT * FROM " + Movie.TABLE_NAME)
+    Cursor CPgetAllFavMovie();
+
+    @Query("SELECT * FROM " + Movie.TABLE_NAME + " where id LIKE :movieId")
+    Cursor CPgetFavMovieById(long movieId);
+
+    @Query("SELECT COUNT(*) from " + Movie.TABLE_NAME)
+    int CPcountFavMovie();
+
+    @Insert
+    void CPinsertFavMovies(Movie... movies);
+
+    @Delete
+    void CPdeleteFavMovie(Movie movie);
+
+    @Query("DELETE FROM " + Movie.TABLE_NAME + " WHERE id LIKE :movieId")
+    void CPdeleteFavMovieById(long movieId);
+//    Favotite Movie Content Provider END ==============================================
+
 
 
 

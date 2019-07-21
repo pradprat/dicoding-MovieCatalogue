@@ -3,6 +3,8 @@ package com.example.subm1moviecatalogue.models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -11,6 +13,7 @@ import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "movie")
 public class Movie implements Parcelable {
+    public static final String TABLE_NAME = "movie";
 
     public Movie(){
 
@@ -285,4 +288,15 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
+
+//    public static Movie fromContentValues(ContentValues values) {
+//        final Movie cheese = new Movie();
+//        if (values.containsKey(COLUMN_ID)) {
+//            cheese.id = values.getAsLong(COLUMN_ID);
+//        }
+//        if (values.containsKey(COLUMN_NAME)) {
+//            cheese.name = values.getAsString(COLUMN_NAME);
+//        }
+//        return cheese;
+//    }
 }
