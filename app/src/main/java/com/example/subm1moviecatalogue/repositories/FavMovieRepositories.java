@@ -1,8 +1,18 @@
 package com.example.subm1moviecatalogue.repositories;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
-import android.content.Context;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.example.subm1moviecatalogue.databases.MovieContentProvider;
 import com.example.subm1moviecatalogue.databases.MovieDatabase;
 import com.example.subm1moviecatalogue.models.Movie;
 
@@ -13,6 +23,7 @@ public class FavMovieRepositories {
     private ArrayList<Movie> favMovieDataArray = new ArrayList<>(); // widget purposes
     private MutableLiveData<ArrayList<Movie>> favMovieData = new MutableLiveData<>();
     private static FavMovieRepositories favMovieRepositories;
+
     public static FavMovieRepositories getInstance(){
         if (favMovieRepositories == null){
             favMovieRepositories = new FavMovieRepositories();
@@ -56,4 +67,27 @@ public class FavMovieRepositories {
 
         return favMovieDataArray;
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public MutableLiveData<ArrayList<Movie>> CPgetFavMovie() {
+
+        ArrayList<Movie> movies = new ArrayList<>();
+//        ambil dari database
+        Cursor cursor = context.getContentResolver().query(MovieContentProvider.URI_MOVIE, null, null, null);
+        for (int i = 0; i < cursor.getCount(); i++) {
+            Movie movie = new Movie();
+            cursor.moveToPosition(i);
+            Log.d("__awk", "doInBackground: " + cursor.getString(cursor.getColumnIndexOrThrow(Movie.COLUMN_title)));
+            // convert to movie
+            //      add movie attribute
+            // add to movies
+            movies.add(movie);
+        }
+
+        setFavMovieData(movies);
+
+        return favMovieData;
+    }
+
+
 }

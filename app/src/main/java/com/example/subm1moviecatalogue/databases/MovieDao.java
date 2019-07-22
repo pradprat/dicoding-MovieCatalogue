@@ -47,13 +47,13 @@ public interface MovieDao {
     int CPcountFavMovie();
 
     @Insert
-    void CPinsertFavMovies(Movie... movies);
+    long CPinsertFavMovies(Movie... movies);
 
     @Delete
     void CPdeleteFavMovie(Movie movie);
 
     @Query("DELETE FROM " + Movie.TABLE_NAME + " WHERE id LIKE :movieId")
-    void CPdeleteFavMovieById(long movieId);
+    int CPdeleteFavMovieById(long movieId);
 //    Favotite Movie Content Provider END ==============================================
 
 

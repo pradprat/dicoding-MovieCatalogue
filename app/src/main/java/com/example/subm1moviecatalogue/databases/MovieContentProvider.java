@@ -44,12 +44,12 @@ public class MovieContentProvider extends ContentProvider {
             if (context == null) {
                 return null;
             }
-            MovieDao movie = MyDatabase.getMyDatabase(context).movieDao();
+            MovieDao movieDao = MyDatabase.getMyDatabase(context).movieDao();
             final Cursor cursor;
             if (code == CODE_MOVIE_DIR) {
-                cursor = movie.CPgetAllFavMovie();
+                cursor = movieDao.CPgetAllFavMovie();
             } else {
-                cursor = movie.CPgetFavMovieById(ContentUris.parseId(uri));
+                cursor = movieDao.CPgetFavMovieById(ContentUris.parseId(uri));
             }
             cursor.setNotificationUri(context.getContentResolver(), uri);
             return cursor;
@@ -74,28 +74,40 @@ public class MovieContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues values) {
-//        switch (MATCHER.match(uri)) {
-//            case CODE_MOVIE_DIR:
-//                final Context context = getContext();
-//                if (context == null) {
-//                    return null;
-//                }
-//                final long id = MyDatabase.getMyDatabase(context).movieDao()
-//                        .insertFavMovies(Movie.fromContentValues(values));
-//                context.getContentResolver().notifyChange(uri, null);
-//                return ContentUris.withAppendedId(uri, id);
-//
-//            case CODE_MOVIE_ITEM:
-//                throw new IllegalArgumentException("Invalid URI, cannot insert with ID: " + uri);
-//            default:
-//                throw new IllegalArgumentException("Unknown URI: " + uri);
-//        }
-        return null;
+        switch (MATCHER.match(uri)) {
+            case CODE_MOVIE_DIR:
+                final Context context = getContext();
+                if (context == null) {
+                    return null;
+                }
+                final long id = MyDatabase.getMyDatabase(context).movieDao()
+                        .CPinsertFavMovies(Movie.fromContentValues(values));
+                context.getContentResolver().notifyChange(uri, null);
+                return ContentUris.withAppendedId(uri, id);
+            case CODE_MOVIE_ITEM:
+                throw new IllegalArgumentException("Invalid URI, cannot insert with ID: " + uri);
+            default:
+                throw new IllegalArgumentException("Unknown URI: " + uri);
+        }
     }
 
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
-        return 0;
+        switch (MATCHER.match(uri)) {
+            case CODE_MOVIE_DIR:
+                throw new IllegalArgumentException("Invalid URI, cannot update without ID" + uri);
+            case CODE_MOVIE_ITEM:
+                final Context context = getContext();
+                if (context == null) {
+                    return 0;
+                }
+                final int count = MyDatabase.getMyDatabase(context).movieDao()
+                        .CPdeleteFavMovieById(ContentUris.parseId(uri));
+                context.getContentResolver().notifyChange(uri, null);
+                return count;
+            default:
+                throw new IllegalArgumentException("Unknown URI: " + uri);
+        }
     }
 
     @Override
