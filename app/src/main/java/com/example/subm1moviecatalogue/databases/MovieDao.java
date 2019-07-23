@@ -47,7 +47,7 @@ public interface MovieDao {
     int CPcountFavMovie();
 
     @Insert
-    long CPinsertFavMovies(Movie... movies);
+    long CPinsertFavMovies(Movie movie);
 
     @Delete
     void CPdeleteFavMovie(Movie movie);

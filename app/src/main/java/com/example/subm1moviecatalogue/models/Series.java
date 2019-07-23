@@ -19,44 +19,64 @@ public class Series implements Parcelable {
     @SerializedName("backdrop_path")
     @ColumnInfo(name="backdrop_path")
     private String backdropPath;
+    public static final String COLUMN_backdropPath = "backdrop_path";
+
     @SerializedName("first_air_date")
     @ColumnInfo(name="first_air_date")
     private String firstAirDate;
-//    @SerializedName("genre_ids")
-//    @ColumnInfo(name="genre_ids")
-//    private ArrayList<Long> genreIds;
+    public static final String COLUMN_firstAirDate = "first_air_date";
+
     @SerializedName("id")
     @ColumnInfo(name="id")
     @PrimaryKey(autoGenerate = false)
     private Long id;
+    public static final String COLUMN_id = "id";
+
     @SerializedName("name")
     @ColumnInfo(name="name")
     private String name;
-//    @SerializedName("origin_country")
-//    @ColumnInfo(name="origin_country")
-//    private ArrayList<String> originCountry;
+    public static final String COLUMN_name = "name";
+
     @SerializedName("original_language")
     @ColumnInfo(name="original_language")
     private String originalLanguage;
+    public static final String COLUMN_originalLanguage = "original_language";
+
     @SerializedName("original_name")
     @ColumnInfo(name="original_name")
     private String originalName;
+    public static final String COLUMN_originalName = "original_name";
+
     @SerializedName("overview")
     @ColumnInfo(name="overview")
     private String overview;
+    public static final String COLUMN_overview = "overview";
+
     @SerializedName("popularity")
     @ColumnInfo(name="popularity")
     private Double popularity;
+    public static final String COLUMN_popularity = "popularity";
+
     @SerializedName("poster_path")
     @ColumnInfo(name="poster_path")
     private String posterPath;
+    public static final String COLUMN_posterPath = "poster_path";
+
     @SerializedName("vote_average")
     @ColumnInfo(name="vote_average")
     private Double voteAverage;
+    public static final String COLUMN_voteAverage = "vote_average";
+
     @SerializedName("vote_count")
     @ColumnInfo(name="vote_count")
     private Long voteCount;
+    public static final String COLUMN_voteCount = "vote_count";
 
+    //
+//    public static final Series getSeriesFromCursor(){
+//        Series series = new Series();
+//
+//    }
     protected Series(Parcel in) {
         backdropPath = in.readString();
         firstAirDate = in.readString();

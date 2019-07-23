@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.subm1moviecatalogue.databases.MovieDatabase;
 import com.example.subm1moviecatalogue.models.Movie;
 import com.example.subm1moviecatalogue.models.Series;
+import com.example.subm1moviecatalogue.repositories.FavMovieRepositories;
+import com.example.subm1moviecatalogue.repositories.MovieRepositories;
 import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity {
@@ -20,10 +22,12 @@ public class MovieDetailActivity extends AppCompatActivity {
     Series series;
     int ADD_FAVORITE=100;
     int REMOVE_FAVORITE=200;
+    FavMovieRepositories favMovieRepositories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_movie_detail);
 
 
@@ -71,17 +75,21 @@ public class MovieDetailActivity extends AppCompatActivity {
                 }else{
                     cbFavorite.setChecked(false);
                 }
-                
+
+                favMovieRepositories = new FavMovieRepositories();
+                favMovieRepositories.setContext(this);
                 cbFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (!isChecked){ // exist in database
-                            movieDatabase.deleteFavMovie(movie);
+//                            movieDatabase.deleteFavMovie(movie);
+                            favMovieRepositories.CPdeleteFavMovie(movie);
                             cbFavorite.setChecked(false);
                             Toast.makeText(getApplicationContext(), movie.getTitle()+getResources().getString(R.string.text_delete_fav), Toast.LENGTH_SHORT).show();
 
                         }else{ // not exist
-                            movieDatabase.insertFavMovies(movie);
+//                            movieDatabase.insertFavMovies(movie);
+                            favMovieRepositories.CPinsertFavMovie(movie);
                             cbFavorite.setChecked(true);
                             Toast.makeText(getApplicationContext(), movie.getTitle()+getResources().getString(R.string.text_add_fav), Toast.LENGTH_SHORT).show();
                         }

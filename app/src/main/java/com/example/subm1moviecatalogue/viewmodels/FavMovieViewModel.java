@@ -1,9 +1,11 @@
 package com.example.subm1moviecatalogue.viewmodels;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import android.content.Context;
+import android.os.Build;
 
 import com.example.subm1moviecatalogue.BuildConfig;
 import com.example.subm1moviecatalogue.models.Movie;
@@ -19,6 +21,7 @@ public class FavMovieViewModel extends ViewModel {
     private MutableLiveData<Boolean> isFetching = new MutableLiveData<>();
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void init(Context context){
         this.context=context;
         setIsFetching(true);
@@ -27,7 +30,8 @@ public class FavMovieViewModel extends ViewModel {
         }
         FavMovieRepositories mFavMovieRepo = FavMovieRepositories.getInstance();
         mFavMovieRepo.setContext(this.context);
-        mMovie = mFavMovieRepo.getFavMovie();
+//        mMovie = mFavMovieRepo.getFavMovie();
+        mMovie = mFavMovieRepo.CPgetFavMovie();
 
     }
 

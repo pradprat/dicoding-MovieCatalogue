@@ -13,7 +13,7 @@ import com.example.subm1moviecatalogue.databases.MovieContentProvider;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "movie")
+@Entity(tableName = Movie.TABLE_NAME)
 public class Movie implements Parcelable {
     public static final String TABLE_NAME = "movie";
 
@@ -23,81 +23,91 @@ public class Movie implements Parcelable {
     @SerializedName("adult")
     @ColumnInfo(name="adult")
     @Expose
-    public static final String COLUMN_adult = "adult";
     private Boolean Adult;
+    public static final String COLUMN_original_language = "original_language";
+    public static final String COLUMN_popularity = "popularity";
+    public static final String COLUMN_backdrop_path = "backdrop_path";
+    public static final String COLUMN_title = "title";
+    public static final String COLUMN_id = "id";
 
+    @SerializedName("original_language")
+    @ColumnInfo(name = "original_language")
+    @Expose
+    private String OriginalLanguage;
+    public static final String COLUMN_vote_count = "vote_count";
+    private static final String COLUMN_adult = "adult";
+    public static final String COLUMN_original_title = "original_title";
     @SerializedName("backdrop_path")
     @ColumnInfo(name="backdrop_path")
     @Expose
-    public static final String COLUMN_backdrop_path = "backdrop_path";
     private String BackdropPath;
+    public static final String COLUMN_overview = "overview";
 
+    @SerializedName("popularity")
+    @ColumnInfo(name = "popularity")
+    @Expose
+    private Double Popularity;
+    @PrimaryKey
     @SerializedName("id")
     @ColumnInfo(name="id")
-    @PrimaryKey(autoGenerate = false)
     @Expose
-    public static final String COLUMN_id = "id";
     private Long Id;
-
-    @SerializedName("original_language")
-    @ColumnInfo(name="original_language")
-    @Expose
-    public static final String COLUMN_original_language = "original_language";
-    private String OriginalLanguage;
-
     @SerializedName("original_title")
     @ColumnInfo(name="original_title")
     @Expose
-    public static final String COLUMN_original_title = "original_title";
     private String OriginalTitle;
-
+    public static final String COLUMN_poster_path = "poster_path";
     @SerializedName("overview")
     @ColumnInfo(name="overview")
     @Expose
-    public static final String COLUMN_overview = "overview";
     private String Overview;
+    public static final String COLUMN_release_date = "release_date";
 
-    @SerializedName("popularity")
-    @ColumnInfo(name="popularity")
+    @SerializedName("title")
+    @ColumnInfo(name = "title")
     @Expose
-    public static final String COLUMN_popularity = "popularity";
-    private Double Popularity;
-
+    private String Title;
     @SerializedName("poster_path")
     @ColumnInfo(name="poster_path")
     @Expose
-    public static final String COLUMN_poster_path = "poster_path";
     private String PosterPath;
-
     @SerializedName("release_date")
     @ColumnInfo(name="release_date")
     @Expose
-    public static final String COLUMN_release_date = "release_date";
     private String ReleaseDate;
-
-    @SerializedName("title")
-    @ColumnInfo(name="title")
-    @Expose
-    public static final String COLUMN_title = "title";
-    private String Title;
-
+    public static final String COLUMN_video = "video";
     @SerializedName("video")
     @ColumnInfo(name="video")
     @Expose
-    public static final String COLUMN_video = "video";
     private Boolean Video;
-
-    @SerializedName("vote_average")
-    @ColumnInfo(name="vote_average")
-    @Expose
     public static final String COLUMN_vote_average = "vote_average";
-    private Double VoteAverage;
 
     @SerializedName("vote_count")
     @ColumnInfo(name="vote_count")
     @Expose
-    public static final String COLUMN_vote_count = "vote_count";
     private Long VoteCount;
+    @SerializedName("vote_average")
+    @ColumnInfo(name = "vote_average")
+    @Expose
+    private Double VoteAverage;
+
+    public static final ContentValues getContentValuesFromMovie(Movie movie) {
+        ContentValues values = new ContentValues();
+        values.put(Movie.COLUMN_adult, movie.getAdult());
+        values.put(Movie.COLUMN_backdrop_path, movie.getBackdropPath());
+        values.put(Movie.COLUMN_id, movie.getId());
+        values.put(Movie.COLUMN_original_language, movie.getOriginalLanguage());
+        values.put(Movie.COLUMN_original_title, movie.getOriginalTitle());
+        values.put(Movie.COLUMN_overview, movie.getOverview());
+        values.put(Movie.COLUMN_popularity, movie.getPopularity());
+        values.put(Movie.COLUMN_poster_path, movie.getPosterPath());
+        values.put(Movie.COLUMN_release_date, movie.getReleaseDate());
+        values.put(Movie.COLUMN_title, movie.getTitle());
+        values.put(Movie.COLUMN_video, movie.getVideo());
+        values.put(Movie.COLUMN_vote_average, movie.getVoteAverage());
+        values.put(Movie.COLUMN_vote_count, movie.getVoteCount());
+        return values;
+    }
 
     public static final Movie getMovieFromCursor(Cursor cursor) {
         Movie movie = new Movie();
@@ -151,39 +161,6 @@ public class Movie implements Parcelable {
         if (MovieContentProvider.getIndexColumn(cursor, "vote_count") != -1) {
             movie.VoteCount = cursor.getLong(cursor.getColumnIndexOrThrow("vote_count"));
         }
-        if (MovieContentProvider.getIndexColumn(cursor, "backdrop_path") != -1) {
-            movie.BackdropPath = cursor.getString(cursor.getColumnIndexOrThrow("backdrop_path"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "id") != -1) {
-            movie.Id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "original_language") != -1) {
-            movie.OriginalLanguage = cursor.getString(cursor.getColumnIndexOrThrow("original_language"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "original_title") != -1) {
-            movie.OriginalTitle = cursor.getString(cursor.getColumnIndexOrThrow("original_title"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "overview") != -1) {
-            movie.Overview = cursor.getString(cursor.getColumnIndexOrThrow("overview"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "popularity") != -1) {
-            movie.Popularity = cursor.getDouble(cursor.getColumnIndexOrThrow("popularity"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "poster_path") != -1) {
-            movie.PosterPath = cursor.getString(cursor.getColumnIndexOrThrow("poster_path"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "release_date") != -1) {
-            movie.ReleaseDate = cursor.getString(cursor.getColumnIndexOrThrow("release_date"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "title") != -1) {
-            movie.Title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "vote_average") != -1) {
-            movie.VoteAverage = cursor.getDouble(cursor.getColumnIndexOrThrow("vote_average"));
-        }
-        if (MovieContentProvider.getIndexColumn(cursor, "vote_count") != -1) {
-            movie.VoteCount = cursor.getLong(cursor.getColumnIndexOrThrow("vote_count"));
-        }
         return movie;
     }
 
@@ -191,42 +168,6 @@ public class Movie implements Parcelable {
         final Movie movie = new Movie();
         if (values.containsKey("adult")) {
             movie.Adult = values.getAsBoolean("adult");
-        }
-        if (values.containsKey("backdrop_path")) {
-            movie.BackdropPath = values.getAsString("backdrop_path");
-        }
-        if (values.containsKey("id")) {
-            movie.Id = values.getAsLong("id");
-        }
-        if (values.containsKey("original_language")) {
-            movie.OriginalLanguage = values.getAsString("original_language");
-        }
-        if (values.containsKey("original_title")) {
-            movie.OriginalTitle = values.getAsString("original_title");
-        }
-        if (values.containsKey("overview")) {
-            movie.Overview = values.getAsString("overview");
-        }
-        if (values.containsKey("popularity")) {
-            movie.Popularity = values.getAsDouble("popularity");
-        }
-        if (values.containsKey("poster_path")) {
-            movie.PosterPath = values.getAsString("poster_path");
-        }
-        if (values.containsKey("release_date")) {
-            movie.ReleaseDate = values.getAsString("release_date");
-        }
-        if (values.containsKey("title")) {
-            movie.Title = values.getAsString("title");
-        }
-        if (values.containsKey("video")) {
-            movie.Video = values.getAsBoolean("video");
-        }
-        if (values.containsKey("vote_average")) {
-            movie.VoteAverage = values.getAsDouble("vote_average");
-        }
-        if (values.containsKey("vote_count")) {
-            movie.VoteCount = values.getAsLong("vote_count");
         }
         if (values.containsKey("backdrop_path")) {
             movie.BackdropPath = values.getAsString("backdrop_path");

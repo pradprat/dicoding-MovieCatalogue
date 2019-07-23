@@ -2,14 +2,12 @@ package com.example.subm1moviecatalogue.repositories;
 
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.CursorLoader;
-import androidx.loader.content.Loader;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.util.Log;
 
 import com.example.subm1moviecatalogue.databases.MovieContentProvider;
@@ -85,6 +83,23 @@ public class FavMovieRepositories {
         setFavMovieData(movies);
 
         return favMovieData;
+    }
+
+    public void CPinsertFavMovie(Movie movie) {
+        try {
+            ContentValues values = Movie.getContentValuesFromMovie(movie);
+            context.getContentResolver().insert(MovieContentProvider.URI_MOVIE, values);
+            Log.d("__CP", "CPinsertFavMovie: " + values.get(Movie.COLUMN_title));
+        } catch (Exception e) {
+        }
+    }
+
+    public void CPdeleteFavMovie(Movie movie) {
+        try {
+            context.getContentResolver().delete(Uri.parse(MovieContentProvider.URI_MOVIE.toString() + "/" + movie.getId()), null, null);
+            Log.d("__CP", "CPdeleteFavMovie: " + movie.getTitle());
+        } catch (Exception e) {
+        }
     }
 
 
