@@ -5,9 +5,11 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.subm1moviecatalogue.databases.MovieContentProvider;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -97,11 +99,96 @@ public class Movie implements Parcelable {
     public static final String COLUMN_vote_count = "vote_count";
     private Long VoteCount;
 
+    public static final Movie getMovieFromCursor(Cursor cursor) {
+        Movie movie = new Movie();
+
+        if (MovieContentProvider.getIndexColumn(cursor, "adult") != -1) {
+            int bool = cursor.getInt(cursor.getColumnIndexOrThrow("adult"));
+            if (bool == 1) {
+                movie.Adult = true;
+            } else {
+                movie.Adult = false;
+            }
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "backdrop_path") != -1) {
+            movie.BackdropPath = cursor.getString(cursor.getColumnIndexOrThrow("backdrop_path"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "id") != -1) {
+            movie.Id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "original_language") != -1) {
+            movie.OriginalLanguage = cursor.getString(cursor.getColumnIndexOrThrow("original_language"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "original_title") != -1) {
+            movie.OriginalTitle = cursor.getString(cursor.getColumnIndexOrThrow("original_title"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "overview") != -1) {
+            movie.Overview = cursor.getString(cursor.getColumnIndexOrThrow("overview"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "popularity") != -1) {
+            movie.Popularity = cursor.getDouble(cursor.getColumnIndexOrThrow("popularity"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "poster_path") != -1) {
+            movie.PosterPath = cursor.getString(cursor.getColumnIndexOrThrow("poster_path"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "release_date") != -1) {
+            movie.ReleaseDate = cursor.getString(cursor.getColumnIndexOrThrow("release_date"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "title") != -1) {
+            movie.Title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "video") != -1) {
+            int bool = cursor.getInt(cursor.getColumnIndexOrThrow("video"));
+            if (bool == 1) {
+                movie.Video = true;
+            } else {
+                movie.Video = false;
+            }
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "vote_average") != -1) {
+            movie.VoteAverage = cursor.getDouble(cursor.getColumnIndexOrThrow("vote_average"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "vote_count") != -1) {
+            movie.VoteCount = cursor.getLong(cursor.getColumnIndexOrThrow("vote_count"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "backdrop_path") != -1) {
+            movie.BackdropPath = cursor.getString(cursor.getColumnIndexOrThrow("backdrop_path"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "id") != -1) {
+            movie.Id = cursor.getLong(cursor.getColumnIndexOrThrow("id"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "original_language") != -1) {
+            movie.OriginalLanguage = cursor.getString(cursor.getColumnIndexOrThrow("original_language"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "original_title") != -1) {
+            movie.OriginalTitle = cursor.getString(cursor.getColumnIndexOrThrow("original_title"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "overview") != -1) {
+            movie.Overview = cursor.getString(cursor.getColumnIndexOrThrow("overview"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "popularity") != -1) {
+            movie.Popularity = cursor.getDouble(cursor.getColumnIndexOrThrow("popularity"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "poster_path") != -1) {
+            movie.PosterPath = cursor.getString(cursor.getColumnIndexOrThrow("poster_path"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "release_date") != -1) {
+            movie.ReleaseDate = cursor.getString(cursor.getColumnIndexOrThrow("release_date"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "title") != -1) {
+            movie.Title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "vote_average") != -1) {
+            movie.VoteAverage = cursor.getDouble(cursor.getColumnIndexOrThrow("vote_average"));
+        }
+        if (MovieContentProvider.getIndexColumn(cursor, "vote_count") != -1) {
+            movie.VoteCount = cursor.getLong(cursor.getColumnIndexOrThrow("vote_count"));
+        }
+        return movie;
+    }
+
     public static Movie fromContentValues(ContentValues values) {
         final Movie movie = new Movie();
-        if (values.containsKey("adult")) {
-            movie.Adult = values.getAsBoolean("adult");
-        }
         if (values.containsKey("adult")) {
             movie.Adult = values.getAsBoolean("adult");
         }

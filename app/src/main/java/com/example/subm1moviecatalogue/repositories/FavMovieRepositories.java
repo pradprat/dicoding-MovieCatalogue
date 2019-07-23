@@ -78,9 +78,7 @@ public class FavMovieRepositories {
             Movie movie = new Movie();
             cursor.moveToPosition(i);
             Log.d("__awk", "doInBackground: " + cursor.getString(cursor.getColumnIndexOrThrow(Movie.COLUMN_title)));
-            // convert to movie
-            //      add movie attribute
-            // add to movies
+            movie = Movie.getMovieFromCursor(cursor);
             movies.add(movie);
         }
 

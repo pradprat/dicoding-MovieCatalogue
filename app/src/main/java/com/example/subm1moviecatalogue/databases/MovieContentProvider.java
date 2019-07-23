@@ -114,4 +114,13 @@ public class MovieContentProvider extends ContentProvider {
     public int update(@NonNull Uri uri, @Nullable ContentValues values, @Nullable String selection, @Nullable String[] selectionArgs) {
         return 0;
     }
+
+    public static final int getIndexColumn(Cursor cursor, String key) {
+        try {
+            int i = cursor.getColumnIndex(key);
+            return i;
+        } catch (Exception e) {
+            return -1;
+        }
+    }
 }
