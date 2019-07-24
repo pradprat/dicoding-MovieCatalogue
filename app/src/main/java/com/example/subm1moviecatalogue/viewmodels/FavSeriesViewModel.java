@@ -1,9 +1,11 @@
 package com.example.subm1moviecatalogue.viewmodels;
 
+import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import android.content.Context;
+import android.os.Build;
 
 import com.example.subm1moviecatalogue.BuildConfig;
 import com.example.subm1moviecatalogue.models.Series;
@@ -18,6 +20,7 @@ public class FavSeriesViewModel extends ViewModel {
     private MutableLiveData<Boolean> isFetching = new MutableLiveData<>();
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void init(Context context){
         this.context=context;
         setIsFetching(true);
@@ -26,8 +29,8 @@ public class FavSeriesViewModel extends ViewModel {
         }
         FavSeriesRepositories mFavSeriesRepo = FavSeriesRepositories.getInstance();
         mFavSeriesRepo.setContext(this.context);
-        mSeries = mFavSeriesRepo.getFavSeries();
-
+//        mSeries = mFavSeriesRepo.getFavSeries();
+        mSeries = mFavSeriesRepo.CPgetFavSeries();
     }
 
     public void updateData(){

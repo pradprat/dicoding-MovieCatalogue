@@ -4,13 +4,18 @@ package com.example.subm1moviecatalogue.models;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import android.content.ContentValues;
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.example.subm1moviecatalogue.databases.MovieContentProvider;
 import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "series")
 public class Series implements Parcelable {
+    public static final String TABLE_NAME = "series";
 
     public Series(){
 
@@ -72,11 +77,120 @@ public class Series implements Parcelable {
     private Long voteCount;
     public static final String COLUMN_voteCount = "vote_count";
 
-    //
-//    public static final Series getSeriesFromCursor(){
-//        Series series = new Series();
-//
-//    }
+    public static final ContentValues getContentValuesFromSeries(Series series) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_backdropPath, series.getBackdropPath());
+        values.put(COLUMN_firstAirDate, series.getFirstAirDate());
+        values.put(COLUMN_id, series.getId());
+        values.put(COLUMN_name, series.getName());
+        values.put(COLUMN_originalLanguage, series.getOriginalLanguage());
+        values.put(COLUMN_originalName, series.getOriginalName());
+        values.put(COLUMN_overview, series.getOverview());
+        values.put(COLUMN_popularity, series.getPopularity());
+        values.put(COLUMN_posterPath, series.getPosterPath());
+        values.put(COLUMN_voteAverage, series.getVoteAverage());
+        values.put(COLUMN_voteCount, series.getVoteCount());
+        return values;
+    }
+
+    public static final Series getSeriesFromCursor(Cursor cursor) {
+        Series series = new Series();
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_backdropPath) != -1) {
+            series.backdropPath = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_backdropPath));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_firstAirDate) != -1) {
+            series.firstAirDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_firstAirDate));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_id) != -1) {
+            series.id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_id));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_name) != -1) {
+            series.name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_name));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_originalLanguage) != -1) {
+            series.originalLanguage = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_originalLanguage));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_originalName) != -1) {
+            series.originalName = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_originalName));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_overview) != -1) {
+            series.overview = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_overview));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_popularity) != -1) {
+            series.popularity = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_popularity));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_posterPath) != -1) {
+            series.posterPath = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_posterPath));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_voteAverage) != -1) {
+            series.voteAverage = cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_voteAverage));
+        }
+
+        if (MovieContentProvider.getIndexColumn(cursor, COLUMN_voteCount) != -1) {
+            series.voteCount = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_voteCount));
+        }
+        return series;
+    }
+
+    public static Series fromContentValues(ContentValues values) {
+        Series series = new Series();
+        if (values.containsKey(COLUMN_backdropPath)) {
+            series.backdropPath = values.getAsString(COLUMN_backdropPath);
+        }
+
+        if (values.containsKey(COLUMN_firstAirDate)) {
+            series.firstAirDate = values.getAsString(COLUMN_firstAirDate);
+        }
+
+        if (values.containsKey(COLUMN_id)) {
+            series.id = values.getAsLong(COLUMN_id);
+        }
+
+        if (values.containsKey(COLUMN_name)) {
+            series.name = values.getAsString(COLUMN_name);
+        }
+
+        if (values.containsKey(COLUMN_originalLanguage)) {
+            series.originalLanguage = values.getAsString(COLUMN_originalLanguage);
+        }
+
+        if (values.containsKey(COLUMN_originalName)) {
+            series.originalName = values.getAsString(COLUMN_originalName);
+        }
+
+        if (values.containsKey(COLUMN_overview)) {
+            series.overview = values.getAsString(COLUMN_overview);
+        }
+
+        if (values.containsKey(COLUMN_popularity)) {
+            series.popularity = values.getAsDouble(COLUMN_popularity);
+        }
+
+        if (values.containsKey(COLUMN_posterPath)) {
+            series.posterPath = values.getAsString(COLUMN_posterPath);
+        }
+
+        if (values.containsKey(COLUMN_voteAverage)) {
+            series.voteAverage = values.getAsDouble(COLUMN_voteAverage);
+        }
+
+        if (values.containsKey(COLUMN_voteCount)) {
+            series.voteCount = values.getAsLong(COLUMN_voteCount);
+        }
+        return series;
+    }
+
+
     protected Series(Parcel in) {
         backdropPath = in.readString();
         firstAirDate = in.readString();

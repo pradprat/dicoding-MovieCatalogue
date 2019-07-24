@@ -15,7 +15,7 @@ import java.util.List;
 @Dao
 public interface MovieDao {
 
-    //    Favotite Movie SQLlite ==============================================
+    //    Favorite Movie SQLlite ==============================================
     @Query("SELECT * FROM " + Movie.TABLE_NAME)
     List<Movie> getAllFavMovie();
 
@@ -33,10 +33,10 @@ public interface MovieDao {
 
     @Query("DELETE FROM " + Movie.TABLE_NAME + " WHERE id LIKE :movieId")
     void deleteFavMovieById(long movieId);
-//    Favotite Movie SQLlite END==============================================
+//    Favorite Movie SQLlite END==============================================
 
 
-    //    Favotite Movie Content Provider ==============================================
+    //    Favorite Movie Content Provider ==============================================
     @Query("SELECT * FROM " + Movie.TABLE_NAME)
     Cursor CPgetAllFavMovie();
 
@@ -54,11 +54,10 @@ public interface MovieDao {
 
     @Query("DELETE FROM " + Movie.TABLE_NAME + " WHERE id LIKE :movieId")
     int CPdeleteFavMovieById(long movieId);
-//    Favotite Movie Content Provider END ==============================================
+//    Favorite Movie Content Provider END ==============================================
 
 
-
-
+    //    Favorite Series SQLlite ==============================================
     @Query("SELECT * FROM series")
     List<Series> getAllFavSeries();
 
@@ -76,5 +75,27 @@ public interface MovieDao {
 
     @Query("DELETE FROM series WHERE id LIKE :seriesId")
     void deleteFavSeriesById(long seriesId);
+    //    Favorite Series SQLlite END==============================================
+
+
+    //    Favorite Series Content Provider ==============================================
+    @Query("SELECT * FROM series")
+    Cursor CPgetAllFavSeries();
+
+    @Query("SELECT * FROM series where id LIKE :seriesId")
+    Cursor CPgetFavSeriesById(long seriesId);
+
+    @Query("SELECT COUNT(*) from series")
+    int CPcountFavSeries();
+
+    @Insert
+    long CPinsertFavSeries(Series series);
+
+    @Delete
+    void CPdeleteFavSeries(Series series);
+
+    @Query("DELETE FROM series WHERE id LIKE :seriesId")
+    int CPdeleteFavSeriesById(long seriesId);
+    //    Favorite Series Content Provider END==============================================
 
 }

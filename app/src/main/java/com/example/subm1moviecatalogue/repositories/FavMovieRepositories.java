@@ -72,12 +72,16 @@ public class FavMovieRepositories {
         ArrayList<Movie> movies = new ArrayList<>();
 //        ambil dari database
         Cursor cursor = context.getContentResolver().query(MovieContentProvider.URI_MOVIE, null, null, null);
-        for (int i = 0; i < cursor.getCount(); i++) {
-            Movie movie = new Movie();
-            cursor.moveToPosition(i);
-            Log.d("__awk", "doInBackground: " + cursor.getString(cursor.getColumnIndexOrThrow(Movie.COLUMN_title)));
-            movie = Movie.getMovieFromCursor(cursor);
-            movies.add(movie);
+        try {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                Movie movie;
+                cursor.moveToPosition(i);
+                Log.d("__awk", "doInBackground: " + cursor.getString(cursor.getColumnIndexOrThrow(Movie.COLUMN_title)));
+                movie = Movie.getMovieFromCursor(cursor);
+                movies.add(movie);
+            }
+        } catch (Exception e) {
+            Log.d("__movieRepos", "CPgetFavMovie: " + e.getMessage());
         }
 
         setFavMovieData(movies);
@@ -99,6 +103,23 @@ public class FavMovieRepositories {
             context.getContentResolver().delete(Uri.parse(MovieContentProvider.URI_MOVIE.toString() + "/" + movie.getId()), null, null);
             Log.d("__CP", "CPdeleteFavMovie: " + movie.getTitle());
         } catch (Exception e) {
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public boolean CPisFavMovieExist(Movie movie) {
+        try {
+            Uri uri = Uri.parse(MovieContentProvider.URI_MOVIE.toString() + "/" + movie.getId());
+            Log.d("__uri", "CPisFavMovieExist: " + uri);
+            Cursor cursor = context.getContentResolver().query(uri, null, null, null);
+            assert cursor != null;
+            cursor.moveToFirst();
+            Movie movie2 = Movie.getMovieFromCursor(cursor);
+            Log.d("__cursor", "CPisFavMovieExist: " + movie2.getId());
+            return true;
+        } catch (Exception e) {
+            Log.d("__error", "CPisFavMovieExist: " + e.getMessage());
+            return false;
         }
     }
 

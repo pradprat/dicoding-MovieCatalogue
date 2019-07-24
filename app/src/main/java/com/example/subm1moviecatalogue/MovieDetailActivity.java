@@ -1,7 +1,9 @@
 package com.example.subm1moviecatalogue;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -13,6 +15,7 @@ import com.example.subm1moviecatalogue.databases.MovieDatabase;
 import com.example.subm1moviecatalogue.models.Movie;
 import com.example.subm1moviecatalogue.models.Series;
 import com.example.subm1moviecatalogue.repositories.FavMovieRepositories;
+import com.example.subm1moviecatalogue.repositories.FavSeriesRepositories;
 import com.example.subm1moviecatalogue.repositories.MovieRepositories;
 import com.squareup.picasso.Picasso;
 
@@ -24,6 +27,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     int REMOVE_FAVORITE=200;
     FavMovieRepositories favMovieRepositories;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,15 +73,16 @@ public class MovieDetailActivity extends AppCompatActivity {
 
                 tvPopular.setText(movie.getPopularity().toString());
 
+
+                favMovieRepositories = new FavMovieRepositories();
+                favMovieRepositories.setContext(this);
+
 //               add Favorite button
-                if (movieDatabase.isFavMovieExist(movie)){
+                if (favMovieRepositories.CPisFavMovieExist(movie)) {
                     cbFavorite.setChecked(true);
                 }else{
                     cbFavorite.setChecked(false);
                 }
-
-                favMovieRepositories = new FavMovieRepositories();
-                favMovieRepositories.setContext(this);
                 cbFavorite.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -118,8 +123,10 @@ public class MovieDetailActivity extends AppCompatActivity {
 //                tvRelease.setText("("+series.getRelease()+")");
                 tvPopular.setText(series.getPopularity().toString());
 
+                final FavSeriesRepositories favSeriesRepositories = new FavSeriesRepositories();
+                favSeriesRepositories.setContext(this);
                 //               add Favorite button
-                if (movieDatabase.isFavSeriesExist(series)){
+                if (favSeriesRepositories.CPisFavSeriesExist(series)) {
                     cbFavorite.setChecked(true);
                 }else{
                     cbFavorite.setChecked(false);
@@ -129,12 +136,14 @@ public class MovieDetailActivity extends AppCompatActivity {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         if (!isChecked){ // exist in database
-                            movieDatabase.deleteFavSeries(series);
+                            favSeriesRepositories.CPdeleteFavSeries(series);
+//                            movieDatabase.deleteFavSeries(series);
                             cbFavorite.setChecked(false);
                             Toast.makeText(getApplicationContext(), series.getName()+getResources().getString(R.string.text_delete_fav), Toast.LENGTH_SHORT).show();
 
                         }else{ // not exist
-                            movieDatabase.insertFavSeries(series);
+                            favSeriesRepositories.CPinsertFavSeries(series);
+//                            movieDatabase.insertFavSeries(series);
                             cbFavorite.setChecked(true);
                             Toast.makeText(getApplicationContext(), series.getName()+getResources().getString(R.string.text_add_fav), Toast.LENGTH_SHORT).show();
                         }

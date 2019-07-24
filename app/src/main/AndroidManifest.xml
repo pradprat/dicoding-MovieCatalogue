@@ -78,6 +78,11 @@
             android:authorities="com.example.subm1moviecatalogue.provider"
             android:exported="true"
             android:permission="com.example.subm1moviecatalogue.provider.READ_WRITE" />
+        <provider
+            android:name=".databases.SeriesContentProvider"
+            android:authorities="com.example.subm1seriescatalogue.provider"
+            android:exported="true"
+            android:permission="com.example.subm1seriescatalogue.provider.READ_WRITE" />
 
     </application>
 
