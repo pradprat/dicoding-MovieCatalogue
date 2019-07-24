@@ -3,16 +3,12 @@ package com.example.subm1moviecatalogue;
 import android.annotation.SuppressLint;
 import android.app.SearchManager;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,10 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.subm1moviecatalogue.adapters.MovieAdapter;
 import com.example.subm1moviecatalogue.models.Movie;
@@ -126,7 +120,7 @@ public class MainHomeActivity extends AppCompatActivity{
                 return super.onOptionsItemSelected(item);
 
             case R.id.action_settings:
-                mIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                mIntent = new Intent(getApplicationContext(), NotifSettingsActivity.class);
                 startActivity(mIntent);
 
 

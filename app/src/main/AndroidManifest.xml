@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MaterialComponents"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".SettingsActivity"
+            android:name=".NotifSettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".MainHomeActivity"
             android:theme="@style/Theme.MovieCatalogTheme" />

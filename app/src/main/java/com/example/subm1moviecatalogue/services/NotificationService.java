@@ -17,11 +17,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.room.Database;
 
 import com.example.subm1moviecatalogue.MainHomeActivity;
 import com.example.subm1moviecatalogue.MovieDetailActivity;
@@ -35,6 +37,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -91,12 +94,19 @@ public class NotificationService extends BroadcastReceiver {
                     showAlarmNotification(context, title, message, notifId);
                 }
 
+                @RequiresApi(api = Build.VERSION_CODES.N)
                 @Override
                 protected Movie doInBackground(Void... voids) {
                     ArrayList<Movie> movies = new ArrayList<>();
                     MovieViewModel movieViewModel = new MovieViewModel();
                     movies.addAll(movieViewModel.getReleasedMovies());
-                    return movies.get(0);
+                    movies.sort(new Comparator<Movie>() {
+                        @Override
+                        public int compare(Movie movie, Movie t1) {
+                            return movie.getReleaseDate().compareTo(t1.getReleaseDate());
+                        }
+                    });
+                    return movies.get(movies.size() - 1);
                 }
             }.execute();
 //            Log.d("__wtf", "onReceive: "+movies.get(0).getTitle());

@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-public class SettingsActivity extends AppCompatActivity {
+public class NotifSettingsActivity extends AppCompatActivity {
 
 
     @Override
